@@ -1,100 +1,69 @@
+# Working with Altera Quartus II (Q2) and do proper versioning is not that easy
+# but if you follow some rules it can be accomplished. :)
+# This file should be placed into the main directory where the .qpf file is
+# found. Generally Q2 throws all entities and so on in the main directory, but
+# you can place all stuff also in separate folders. This approach is followed
+# here. So when you create a new design create one or more folders where your
+# entities will be located and put a .gitignore in there that overrides the
+# ignores of this file, e.g. one single rule stating "!*" which allows now all
+# type of files. When you add a MegaFunction or another entity to your design,
+# simply add it to one of your private folders and Q2 will be happy and manage
+# everything quite good. When you want to do versioning of your generated
+# SOF/POF files, you can do this by redirecting the generated output to an own
+# folder. To do this go to:
+# "Assignments"
+# -> "Settings
+# -> "Compilation Process Settings"
+# -> "Save project output files in specified directory"
+# Now you can either place a .gitignore in the directory and allow the following
+# list of types:
+# !*.sof
+# !*.pof
+# or you create an own submodule in the folder to keep binary files out of your
+# design.
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,c,git
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,c,git
+# Need to keep all HDL files
+# *.vhd
+# *.v
 
-### C ###
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
+# ignore Quartus II generated files
+*_generation_script*
+*_inst.vhd
+*.bak
+*.cmp
+*.done
+*.eqn
 *.hex
+*.html
+*.jdi
+*.jpg
+# *.mif
+*.pin
+*.pof
+*.ptf.*
+*.qar
+*.qarlog
+*.qws
+*.rpt
+*.smsg
+*.sof
+*.sopc_builder
+*.summary
+*.tcl
+*.txt # Explicitly add any text files used
+*~
+*example*
+*sopc_*
+# *.sdc # I want those timing files
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
-
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-
-# Dump file
-*.stackdump
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,c,git
+# ignore Quartus II generated folders
+*/db/
+*/incremental_db/
+*/simulation/
+*/timing/
+*/testbench/
+*/*_sim/
+incremental_db/
+db/
+_output_files/
+PLLJ_PLLSPE_INFO.txt
