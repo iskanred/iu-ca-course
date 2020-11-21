@@ -15,7 +15,6 @@ syscall
 move $t2, $a0 # $t2 points to string
 move $t1, $zero # Counter = 0
 
-li $s0, 10 # $s0 = '\n' newLine char - const value
 li $t4, 32 # previous_char of string. Start value = ' '
 
 
@@ -26,7 +25,8 @@ Loop: # --------------------------------------------------
 
 	beq $t0, $zero, EndLoop # if (char == '\0')
 
-	beq $t0, $s0, EndLoop # if (char == '\n')
+	beq $t0, 10, EndLoop # if (char == '\n')
+	
 
 	beq $t0, 32, MoveNext # if (char == ' ')
 
